@@ -12,7 +12,7 @@ class Menu:
         self.font = pygame.font.Font('../font/LycheeSoda.ttf', 30)
 
         # options
-        self.width = 400
+        self.width = 500
         self.space = 10
         self.padding = 8
 
@@ -46,8 +46,8 @@ class Menu:
         self.main_rect = pygame.Rect(SCREEN_WIDTH / 2 - self.width / 2, self.menu_top, self.width, self.total_height)
 
         # buy / sell text surface
-        self.buy_text = self.font.render('buy', False, 'Black')
-        self.sell_text = self.font.render('sell', False, 'Black')
+        self.buy_text = self.font.render('buy for: ', False, 'Black')
+        self.sell_text = self.font.render('sell for: ', False, 'Black')
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -88,7 +88,7 @@ class Menu:
         if self.index > len(self.options) - 1:
             self.index = 0
 
-    def show_entry(self, text_surf, amount, top, selected):
+    def show_entry(self, text_surf, price, amount, top, selected):
 
         # background
         bg_rect = pygame.Rect(self.main_rect.left, top, self.width, text_surf.get_height() + self.padding * 2)
@@ -98,8 +98,13 @@ class Menu:
         text_rect = text_surf.get_rect(midleft=(self.main_rect.left + 20, bg_rect.centery))
         self.display_surface.blit(text_surf, text_rect)
 
+        # price
+        price_surf = self.font.render(f'{price}$', False, 'Black')
+        price_rect = price_surf.get_rect(midleft=(self.main_rect.left + 300, bg_rect.centery))
+        self.display_surface.blit(price_surf, price_rect)
+
         # amount
-        amount_surf = self.font.render(str(amount), False, 'Black')
+        amount_surf = self.font.render(f'owned: {amount}', False, 'Black')
         amount_rect = amount_surf.get_rect(midright=(self.main_rect.right - 20, bg_rect.centery))
         self.display_surface.blit(amount_surf, amount_rect)
 
@@ -107,10 +112,10 @@ class Menu:
         if selected:
             pygame.draw.rect(self.display_surface, 'black', bg_rect, 4, 4)
             if self.index <= self.sell_border:  # sell
-                pos_rect = self.sell_text.get_rect(midleft=(self.main_rect.left + 150, bg_rect.centery))
+                pos_rect = self.sell_text.get_rect(midleft=(self.main_rect.left + 200, bg_rect.centery))
                 self.display_surface.blit(self.sell_text, pos_rect)
             else:  # buy
-                pos_rect = self.buy_text.get_rect(midleft=(self.main_rect.left + 150, bg_rect.centery))
+                pos_rect = self.buy_text.get_rect(midleft=(self.main_rect.left + 200, bg_rect.centery))
                 self.display_surface.blit(self.buy_text, pos_rect)
 
     def update(self):
@@ -119,5 +124,7 @@ class Menu:
         for text_index, text_surf in enumerate(self.text_surfs):
             top = self.main_rect.top + text_index * (text_surf.get_height() + (self.padding * 2) + self.space)
             amount_list = list(self.player.item_inventory.values()) + list(self.player.seed_inventory.values())
+            price_list = list(SALE_PRICE.values()) + list(PURCHASE_PRINCE.values())
             amount = amount_list[text_index]
-            self.show_entry(text_surf, amount, top, self.index == text_index)
+            price = price_list[text_index]
+            self.show_entry(text_surf, price, amount, top, self.index == text_index)

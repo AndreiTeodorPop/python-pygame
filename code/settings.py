@@ -49,6 +49,6 @@ SALE_PRICE = {
 }
 
 PURCHASE_PRINCE = {
-    'corn': 4,
-    'tomato': 5
+    'corn seed': 4,
+    'tomato seed': 5
 }
