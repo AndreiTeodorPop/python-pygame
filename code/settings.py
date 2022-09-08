@@ -8,7 +8,8 @@ TILE_SIZE = 64
 # overlay positions
 OVERLAY_POSITIONS = {
     'tool': (40, SCREEN_HEIGHT - 15),
-    'seed': (70, SCREEN_HEIGHT - 5)}
+    'seed': (70, SCREEN_HEIGHT - 5),
+    'seed_amount': (110, SCREEN_HEIGHT - 100)}
 
 PLAYER_TOOL_OFFSET = {
     'left': Vector2(-50, 40),
@@ -49,6 +50,6 @@ SALE_PRICE = {
 }
 
 PURCHASE_PRINCE = {
-    'corn seed': 4,
-    'tomato seed': 5
+    'corn': 4,
+    'tomato': 5
 }

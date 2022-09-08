@@ -4,6 +4,7 @@ from settings import *
 
 class Overlay:
     def __init__(self, player, day=1):
+        self.font = pygame.font.Font('../font/LycheeSoda.ttf', 30)
         self.day = day
         # general setup
         self.display_surface = pygame.display.get_surface()
@@ -27,6 +28,18 @@ class Overlay:
         seed_rect = seed_surf.get_rect(midbottom=OVERLAY_POSITIONS['seed'])
         self.display_surface.blit(seed_surf, seed_rect)
 
+        # seeds number
+        if self.player.selected_seed == 'corn':
+            seed = self.player.seed_inventory.get('corn')
+            seed_surface = self.font.render(f'owned: {seed}', False, 'White')
+            seed_rectangle = seed_surface.get_rect(midright=OVERLAY_POSITIONS['seed_amount'])
+            self.display_surface.blit(seed_surface, seed_rectangle)
+        else:
+            seed = self.player.seed_inventory.get('tomato')
+            seed_surface = self.font.render(f'owned: {seed}', False, 'White')
+            seed_rectangle = seed_surface.get_rect(midright=OVERLAY_POSITIONS['seed_amount'])
+            self.display_surface.blit(seed_surface, seed_rectangle)
+
         # day number
         font = pygame.font.Font('freesansbold.ttf', 32)
         day_message = font.render("Day: " + str(self.day), True, 'White')
@@ -34,4 +47,3 @@ class Overlay:
 
     def next_day(self):
         self.day += 1
-

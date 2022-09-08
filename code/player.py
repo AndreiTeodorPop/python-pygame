@@ -2,7 +2,6 @@ import pygame
 from settings import *
 from support import *
 from timer import Timer
-from overlay import Overlay
 
 
 class Player(pygame.sprite.Sprite):
@@ -53,8 +52,8 @@ class Player(pygame.sprite.Sprite):
             'tomato': 0
         }
         self.seed_inventory = {
-            'corn seed': 5,
-            'tomato seed': 5
+            'corn': 5,
+            'tomato': 5
         }
         self.money = 200
 

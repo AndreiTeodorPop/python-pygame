@@ -8,6 +8,8 @@ from settings import *
 class Game:
     def __init__(self):
         pygame.init()
+        # info = pygame.display.Info()
+        # SCREEN_WIDTH, SCREEN_HEIGHT = info.current_w, info.current_h
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption('Sprout land')
         self.clock = pygame.time.Clock()
@@ -28,4 +30,3 @@ class Game:
 if __name__ == '__main__':
     game = Game()
     game.run()
-
