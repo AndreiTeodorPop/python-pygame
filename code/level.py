@@ -2,7 +2,7 @@ import pygame
 from settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic, Water, WildFlower, Tree, Interaction, Particle
+from sprites import Generic, Water, WildFlower, Tree, Interaction, Particle, Enemy
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
@@ -21,6 +21,7 @@ class Level:
         self.all_sprites = CameraGroup()
         self.collision_sprites = pygame.sprite.Group()
         self.tree_sprites = pygame.sprite.Group()
+        self.enemy_sprites = pygame.sprite.Group()
         self.interaction_sprites = pygame.sprite.Group()
 
         self.soil_layer = SoilLayer(self.all_sprites, self.collision_sprites)
@@ -42,7 +43,7 @@ class Level:
         self.success = pygame.mixer.Sound('../audio/success.wav')
         self.success.set_volume(0.3)
         self.music = pygame.mixer.Sound('../audio/music.mp3')
-        # self.music.set_volume(0.1)
+        self.music.set_volume(0)
         self.music.play(loops=-1)
 
     def setup(self):
@@ -74,9 +75,19 @@ class Level:
                 name=obj.name,
                 player_add=self.player_add)
 
+        # enemy
+        for obj in tmx_data.get_layer_by_name('Enemy'):
+            Enemy(
+                pos=(obj.x, obj.y),
+                surf=obj.image,
+                groups=[self.all_sprites, self.enemy_sprites,self.collision_sprites])
+
         # wildflowers
         for obj in tmx_data.get_layer_by_name('Decoration'):
-            WildFlower((obj.x, obj.y), obj.image, [self.all_sprites, self.collision_sprites])
+            WildFlower(
+                pos=(obj.x, obj.y),
+                surf=obj.image,
+                groups=[self.all_sprites, self.collision_sprites])
 
         # collision tiles
         for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
@@ -90,6 +101,7 @@ class Level:
                     group=self.all_sprites,
                     collision_sprites=self.collision_sprites,
                     tree_sprites=self.tree_sprites,
+                    enemy_sprites=self.enemy_sprites,
                     interaction=self.interaction_sprites,
                     soil_layer=self.soil_layer,
                     toggle_shop=self.toggle_shop)

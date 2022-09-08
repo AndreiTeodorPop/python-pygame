@@ -128,3 +128,34 @@ class Tree(Generic):
                     surf=self.apple_surf,
                     groups=[self.apple_sprites, self.groups()[0]],
                     z=LAYERS['fruit'])
+
+
+class Enemy(Generic):
+    def __init__(self, pos, surf, groups):
+        super().__init__(pos, surf, groups)
+
+        self.health = 5
+        self.alive = True
+
+        # sounds
+        self.axe_sound = pygame.mixer.Sound('../audio/axe.mp3')
+
+        self.hitbox = self.rect.copy().inflate((-40, -self.rect.height * 0.6))
+        self.enemy_surf = pygame.image.load('../graphics/objects/enemy.png').convert_alpha()
+
+    def damage_enemy(self):
+        # damaging the enemy
+        self.health -= 1
+        print(self.health)
+
+        # play sound
+        self.axe_sound.play()
+
+    def check_death(self):
+        if self.health <= 0:
+            self.alive = False
+            Particle(self.rect.topleft, self.image, self.groups()[0], LAYERS['main'], 300)
+
+    def update(self, dt):
+        if self.alive:
+            self.check_death()

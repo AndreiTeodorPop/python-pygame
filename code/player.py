@@ -5,7 +5,7 @@ from timer import Timer
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, enemy_sprites, interaction, soil_layer, toggle_shop):
         super().__init__(group)
 
         self.import_assets()
@@ -59,6 +59,7 @@ class Player(pygame.sprite.Sprite):
 
         # interaction
         self.tree_sprites = tree_sprites
+        self.enemy_sprites = enemy_sprites
         self.interaction = interaction
         self.sleep = False
         self.soil_layer = soil_layer
@@ -75,6 +76,9 @@ class Player(pygame.sprite.Sprite):
             for tree in self.tree_sprites.sprites():
                 if tree.rect.collidepoint(self.target_pos):
                     tree.damage()
+            for enemy in self.enemy_sprites.sprites():
+                if enemy.rect.collidepoint(self.target_pos):
+                    enemy.damage_enemy()
         if self.selected_tool == 'water':
             self.soil_layer.water(self.target_pos)
             self.watering.play()
