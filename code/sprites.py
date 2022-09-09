@@ -53,6 +53,18 @@ class Cow(Generic):
         self.hitbox = self.rect.copy().inflate((-20, -self.rect.height * 0.9))
 
 
+class Hen(Generic):
+    def __init__(self, pos, surf, groups):
+        super().__init__(pos, surf, groups)
+        self.hitbox = self.rect.copy().inflate((-20, -self.rect.height * 0.9))
+
+
+class Rabbit(Generic):
+    def __init__(self, pos, surf, groups):
+        super().__init__(pos, surf, groups)
+        self.hitbox = self.rect.copy().inflate((-20, -self.rect.height * 0.9))
+
+
 class Particle(Generic):
     def __init__(self, pos, surf, groups, z, duration=200):
         super().__init__(pos, surf, groups, z)

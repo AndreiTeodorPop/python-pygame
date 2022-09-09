@@ -2,7 +2,7 @@ import pygame
 from settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic, Water, WildFlower, Tree, Interaction, Particle, Enemy, Cow
+from sprites import Generic, Water, WildFlower, Tree, Interaction, Particle, Enemy, Cow, Hen, Rabbit
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
@@ -91,11 +91,24 @@ class Level:
 
         # cow
         for obj in tmx_data.get_layer_by_name('Cow'):
-            for number in range(1, 3):
-                Cow(
-                    pos=(obj.x, obj.y),
-                    surf=obj.image,
-                    groups=[self.all_sprites, self.collision_sprites])
+            Cow(
+                pos=(obj.x, obj.y),
+                surf=obj.image,
+                groups=[self.all_sprites, self.collision_sprites])
+
+        # hen
+        for obj in tmx_data.get_layer_by_name('Hen'):
+            Hen(
+                pos=(obj.x, obj.y),
+                surf=obj.image,
+                groups=[self.all_sprites, self.collision_sprites])
+
+        # rabbit
+        for obj in tmx_data.get_layer_by_name('Rabbit'):
+            Rabbit(
+                pos=(obj.x, obj.y),
+                surf=obj.image,
+                groups=[self.all_sprites, self.collision_sprites])
 
         # collision tiles
         for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():

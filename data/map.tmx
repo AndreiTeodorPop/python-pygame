@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="22" nextobjectid="321">
+<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="24" nextobjectid="353">
  <tileset firstgid="1" source="Tilesets/Grass.tsx"/>
  <tileset firstgid="81" source="Tilesets/Hills.tsx"/>
  <tileset firstgid="117" source="Tilesets/Fences.tsx"/>
@@ -569,6 +569,25 @@
   <object id="317" gid="263" x="2844" y="1076" width="85" height="64"/>
   <object id="318" gid="262" x="2162" y="1082" width="85" height="64"/>
   <object id="319" gid="262" x="1522" y="634" width="85" height="64"/>
+ </objectgroup>
+ <objectgroup id="22" name="Hen">
+  <object id="339" gid="264" x="900" y="2037" width="56" height="54"/>
+  <object id="340" gid="265" x="698" y="1588" width="56" height="55"/>
+  <object id="341" gid="265" x="768" y="626" width="56" height="55"/>
+  <object id="342" gid="265" x="1858" y="442" width="56" height="55"/>
+  <object id="343" gid="264" x="2174" y="2095" width="56" height="54"/>
+  <object id="344" gid="264" x="2634" y="2415" width="56" height="54"/>
+  <object id="345" gid="265" x="2638" y="1846" width="56" height="55"/>
+  <object id="346" gid="264" x="1858" y="103" width="56" height="54"/>
+  <object id="347" gid="264" x="2306" y="623" width="56" height="54"/>
+  <object id="348" gid="265" x="1916" y="1144" width="56" height="55"/>
+  <object id="349" gid="266" x="1603" y="952" width="51" height="51"/>
+  <object id="350" gid="267" x="2494" y="1902" width="52" height="51"/>
+  <object id="351" gid="267" x="1478" y="308" width="52" height="51"/>
+  <object id="352" gid="266" x="2891" y="248" width="51" height="51"/>
+ </objectgroup>
+ <objectgroup id="23" name="Rabbit">
+  <object id="337" gid="266" x="1159" y="1736" width="51" height="51"/>
  </objectgroup>
  <objectgroup id="7" name="Objects">
   <object id="2" gid="147" x="432" y="948" width="56" height="112"/>
