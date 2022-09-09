@@ -3,7 +3,7 @@ from settings import *
 
 
 class Overlay:
-    def __init__(self, player, day=1):
+    def __init__(self, player, day=0):
         self.font = pygame.font.Font('../font/LycheeSoda.ttf', 30)
         self.day = day
         # general setup
@@ -42,8 +42,11 @@ class Overlay:
 
         # day number
         font = pygame.font.Font('freesansbold.ttf', 32)
-        day_message = font.render("Day: " + str(self.day), True, 'White')
-        self.display_surface.blit(day_message, (10, 10))
+        text = WEEKDAYS[(self.day % 7)]
+        day_number = font.render("Day: " + str(self.day + 1), True, 'White')
+        day_name = font.render(text, True, 'White')
+        self.display_surface.blit(day_number, (10, 10))
+        self.display_surface.blit(day_name, (10, 40))
 
     def next_day(self):
         self.day += 1
