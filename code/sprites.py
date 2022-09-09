@@ -134,26 +134,32 @@ class Enemy(Generic):
     def __init__(self, pos, surf, groups):
         super().__init__(pos, surf, groups)
 
+        self.hitbox = self.rect.copy().inflate((-40, -self.rect.height * 0.8))
+
         self.health = 5
         self.alive = True
 
-        # sounds
-        self.axe_sound = pygame.mixer.Sound('../audio/axe.mp3')
+        dead_path = f'../graphics/objects/dead.png'
+        self.dead_surf = pygame.image.load(dead_path).convert_alpha()
 
-        self.hitbox = self.rect.copy().inflate((-40, -self.rect.height * 0.6))
-        self.enemy_surf = pygame.image.load('../graphics/objects/enemy.png').convert_alpha()
+        # sounds
+        self.hit_sound = pygame.mixer.Sound('../audio/hit.wav')
+        self.dead_sound = pygame.mixer.Sound('../audio/dead.wav')
 
     def damage_enemy(self):
         # damaging the enemy
         self.health -= 1
-        print(self.health)
 
         # play sound
-        self.axe_sound.play()
+        self.hit_sound.play()
 
     def check_death(self):
         if self.health <= 0:
+            self.image = self.dead_surf
+            self.rect = self.image.get_rect(midbottom=self.rect.midbottom)
+            self.hitbox = self.rect.copy().inflate((-20, -self.rect.height * 0.3))
             self.alive = False
+            self.dead_sound.play()
             Particle(self.rect.topleft, self.image, self.groups()[0], LAYERS['main'], 300)
 
     def update(self, dt):

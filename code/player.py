@@ -77,7 +77,7 @@ class Player(pygame.sprite.Sprite):
                 if tree.rect.collidepoint(self.target_pos):
                     tree.damage()
             for enemy in self.enemy_sprites.sprites():
-                if enemy.rect.collidepoint(self.target_pos):
+                if enemy.rect.collidepoint(self.target_pos) and enemy.health > 0:
                     enemy.damage_enemy()
         if self.selected_tool == 'water':
             self.soil_layer.water(self.target_pos)

@@ -80,7 +80,7 @@ class Level:
             Enemy(
                 pos=(obj.x, obj.y),
                 surf=obj.image,
-                groups=[self.all_sprites, self.enemy_sprites,self.collision_sprites])
+                groups=[self.all_sprites, self.collision_sprites, self.enemy_sprites])
 
         # wildflowers
         for obj in tmx_data.get_layer_by_name('Decoration'):
