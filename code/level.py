@@ -91,10 +91,11 @@ class Level:
 
         # cow
         for obj in tmx_data.get_layer_by_name('Cow'):
-            Cow(
-                pos=(obj.x, obj.y),
-                surf=obj.image,
-                groups=[self.all_sprites, self.collision_sprites])
+            for number in range(1, 3):
+                Cow(
+                    pos=(obj.x, obj.y),
+                    surf=obj.image,
+                    groups=[self.all_sprites, self.collision_sprites])
 
         # collision tiles
         for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
