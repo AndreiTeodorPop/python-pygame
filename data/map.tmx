@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="21" nextobjectid="274">
+<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="22" nextobjectid="290">
  <tileset firstgid="1" source="Tilesets/Grass.tsx"/>
  <tileset firstgid="81" source="Tilesets/Hills.tsx"/>
  <tileset firstgid="117" source="Tilesets/Fences.tsx"/>
@@ -11,6 +11,7 @@
  <tileset firstgid="172" source="Tilesets/House.tsx"/>
  <tileset firstgid="207" source="Tilesets/House Decoration.tsx"/>
  <tileset firstgid="261" source="Tilesets/Enemy.tsx"/>
+ <tileset firstgid="262" source="Tilesets/Cow.tsx"/>
  <layer id="2" name="Water" width="50" height="40" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -552,6 +553,9 @@
  </objectgroup>
  <objectgroup id="19" name="Enemy">
   <object id="273" gid="261" x="1971" y="1660" width="99" height="139"/>
+ </objectgroup>
+ <objectgroup id="21" name="Cow">
+  <object id="288" class="Cow" gid="262" x="1138" y="1692" width="85" height="64"/>
  </objectgroup>
  <objectgroup id="7" name="Objects">
   <object id="2" gid="147" x="432" y="948" width="56" height="112"/>

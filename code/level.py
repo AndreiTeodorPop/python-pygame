@@ -2,7 +2,7 @@ import pygame
 from settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic, Water, WildFlower, Tree, Interaction, Particle, Enemy
+from sprites import Generic, Water, WildFlower, Tree, Interaction, Particle, Enemy, Cow
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
@@ -85,6 +85,13 @@ class Level:
         # wildflowers
         for obj in tmx_data.get_layer_by_name('Decoration'):
             WildFlower(
+                pos=(obj.x, obj.y),
+                surf=obj.image,
+                groups=[self.all_sprites, self.collision_sprites])
+
+        # cow
+        for obj in tmx_data.get_layer_by_name('Cow'):
+            Cow(
                 pos=(obj.x, obj.y),
                 surf=obj.image,
                 groups=[self.all_sprites, self.collision_sprites])

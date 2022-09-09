@@ -1,7 +1,6 @@
 import pygame
 from settings import *
 from random import randint, choice
-from timer import Timer
 
 
 class Generic(pygame.sprite.Sprite):
@@ -43,6 +42,12 @@ class Water(Generic):
 
 
 class WildFlower(Generic):
+    def __init__(self, pos, surf, groups):
+        super().__init__(pos, surf, groups)
+        self.hitbox = self.rect.copy().inflate((-20, -self.rect.height * 0.9))
+
+
+class Cow(Generic):
     def __init__(self, pos, surf, groups):
         super().__init__(pos, surf, groups)
         self.hitbox = self.rect.copy().inflate((-20, -self.rect.height * 0.9))
