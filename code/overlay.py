@@ -42,7 +42,7 @@ class Overlay:
 
         # day number
         font = pygame.font.Font('freesansbold.ttf', 32)
-        text = WEEKDAYS[(self.day % 7)]
+        text = DAYS_OF_WEEK[(self.day % 7)]
         day_number = font.render("Day: " + str(self.day + 1), True, 'White')
         day_name = font.render(text, True, 'White')
         self.display_surface.blit(day_number, (10, 10))
