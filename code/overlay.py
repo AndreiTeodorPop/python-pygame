@@ -1,4 +1,5 @@
 import pygame
+import datetime
 from settings import *
 
 
@@ -40,13 +41,42 @@ class Overlay:
             seed_rectangle = seed_surface.get_rect(midright=OVERLAY_POSITIONS['seed_amount'])
             self.display_surface.blit(seed_surface, seed_rectangle)
 
-        # day number
+        # time
+        self.display_day()
+
+    def display_day(self):
         font = pygame.font.Font('freesansbold.ttf', 32)
+
+        # day number
         text = DAYS_OF_WEEK[(self.day % 7)]
         day_number = font.render("Day: " + str(self.day + 1), True, 'White')
         day_name = font.render(text, True, 'White')
         self.display_surface.blit(day_number, (10, 10))
         self.display_surface.blit(day_name, (10, 40))
+
+        # hours and minutes
+        start_time = pygame.time.get_ticks()
+        date = datetime.datetime.utcfromtimestamp(start_time + 28000).strftime("%H:%M %p")
+        self.display_surface.blit(font.render(str(date), True, 'White'), (10, 80))
+
+        # part of the day
+        day_time = self.day_time(date)
+        self.display_surface.blit(font.render(day_time, True, 'White'), (10, 110))
+
+    def day_time(self, date):
+        day_time = ''
+        integer_date = int(date[:2])
+        if 5 <= integer_date < 12:
+            day_time = TIME_OF_DAY[0]
+        elif 12 <= integer_date < 17:
+            day_time = TIME_OF_DAY[1]
+        elif 17 <= integer_date < 21:
+            day_time = TIME_OF_DAY[2]
+        elif 21 <= integer_date:
+            day_time = TIME_OF_DAY[3]
+        elif integer_date < 5:
+            day_time = TIME_OF_DAY[3]
+        return day_time
 
     def next_day(self):
         self.day += 1

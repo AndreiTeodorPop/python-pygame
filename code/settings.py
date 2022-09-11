@@ -63,4 +63,4 @@ DAYS_OF_WEEK = {
     5: "Saturday",
     6: "Sunday"}
 
-TIME_OF_DAY = ["morning", "noon", "evening", "night"]
+TIME_OF_DAY = ["Morning", "Afternoon", "Evening", "Night"]

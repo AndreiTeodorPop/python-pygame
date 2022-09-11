@@ -184,8 +184,9 @@ class Level:
             self.all_sprites.update(dt)
             self.plant_collision()
 
-        # weather
         self.overlay.display()
+
+        # weather
         if self.raining and not self.shop_active:
             self.rain.update()
 
