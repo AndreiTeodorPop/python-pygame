@@ -6,6 +6,7 @@ from settings import *
 class Overlay:
     def __init__(self, player, day=0):
         self.font = pygame.font.Font('../font/LycheeSoda.ttf', 30)
+        self.check = True
         self.day = day
         # general setup
         self.display_surface = pygame.display.get_surface()
@@ -57,6 +58,12 @@ class Overlay:
         # hours and minutes
         start_time = pygame.time.get_ticks()
         date = datetime.datetime.utcfromtimestamp(start_time + 28000).strftime("%H:%M %p")
+        if date == '23:59 PM':
+            if self.check:
+                self.next_day()
+                self.check = False
+        if date == '01:00 AM':
+            self.check = True
         self.display_surface.blit(font.render(str(date), True, 'White'), (10, 80))
 
         # part of the day
