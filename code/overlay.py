@@ -6,7 +6,8 @@ from settings import *
 class Overlay:
     def __init__(self, player, day=0):
         self.font = pygame.font.Font('../font/LycheeSoda.ttf', 30)
-        self.check = True
+        # time setup
+        self.check_part_of_day = True
         self.day = day
         # general setup
         self.display_surface = pygame.display.get_surface()
@@ -57,20 +58,20 @@ class Overlay:
 
         # hours and minutes
         start_time = pygame.time.get_ticks()
-        date = datetime.datetime.utcfromtimestamp(start_time + 28000).strftime("%H:%M %p")
-        if date == '23:59 PM':
-            if self.check:
+        day_time = datetime.datetime.utcfromtimestamp(start_time + 28000).strftime("%H:%M %p")
+        if day_time == '23:59 PM':
+            if self.check_part_of_day:
                 self.next_day()
-                self.check = False
-        if date == '01:00 AM':
-            self.check = True
-        self.display_surface.blit(font.render(str(date), True, 'White'), (10, 80))
+                self.check_part_of_day = False
+        if day_time == '01:00 AM':
+            self.check_part_of_day = True
+        self.display_surface.blit(font.render(day_time, True, 'White'), (10, 80))
 
         # part of the day
-        day_time = self.day_time(date)
-        self.display_surface.blit(font.render(day_time, True, 'White'), (10, 110))
+        moment_of_day = self.get_moment_of_day(day_time)
+        self.display_surface.blit(font.render(moment_of_day, True, 'White'), (10, 110))
 
-    def day_time(self, date):
+    def get_moment_of_day(self, date):
         day_time = ''
         integer_date = int(date[:2])
         if 5 <= integer_date < 12:
