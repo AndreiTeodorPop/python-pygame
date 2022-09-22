@@ -1,6 +1,7 @@
 import pygame
 import datetime
 from settings import *
+from timer import Timer
 
 
 class Overlay:
@@ -12,6 +13,7 @@ class Overlay:
         # general setup
         self.display_surface = pygame.display.get_surface()
         self.player = player
+        self.timer = Timer(100)
 
         # imports
         overlay_path = '../graphics/overlay/'
@@ -57,8 +59,8 @@ class Overlay:
         self.display_surface.blit(day_name, (10, 40))
 
         # hours and minutes
-        start_time = pygame.time.get_ticks()
-        day_time = datetime.datetime.utcfromtimestamp(start_time + 28000).strftime("%H:%M %p")
+        self.timer.activate()
+        day_time = datetime.datetime.utcfromtimestamp(self.timer.start_time + 28000).strftime("%H:%M %p")
         if day_time == '23:59 PM':
             if self.check_part_of_day:
                 self.next_day()
@@ -88,3 +90,4 @@ class Overlay:
 
     def next_day(self):
         self.day += 1
+        self.timer.increase_time()

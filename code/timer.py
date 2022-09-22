@@ -22,3 +22,6 @@ class Timer:
             if self.function and self.start_time != 0:
                 self.function()
             self.deactivate()
+
+    def increase_time(self):
+        self.start_time += 28000
