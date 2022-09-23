@@ -60,7 +60,11 @@ class Overlay:
 
         # hours and minutes
         self.timer.activate()
-        day_time = datetime.datetime.utcfromtimestamp(self.timer.start_time + 28000).strftime("%H:%M %p")
+        # for sleep add 8 hours
+        for i in range(0, 10000):
+            if self.day >= i:
+                self.timer.start_time += 28000
+        day_time = datetime.datetime.utcfromtimestamp(self.timer.start_time).strftime("%H:%M %p")
         if day_time == '23:59 PM':
             if self.check_part_of_day:
                 self.next_day()
@@ -90,4 +94,3 @@ class Overlay:
 
     def next_day(self):
         self.day += 1
-        self.timer.increase_time()
